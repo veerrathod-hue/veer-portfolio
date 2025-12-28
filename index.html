@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description" content="Portfolio of Veer Rathod, a Full-Stack Developer and SIH Winner specializing in React, Next.js, and AI integration.">
+    <meta name="keywords" content="Veer Rathod, Full-Stack Developer, React, Next.js, AI, Portfolio, SIH Winner, Web Developer">
+    <meta name="author" content="Veer Rathod">
+    <meta name="theme-color" content="#050a0e">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;500;700&family=Fira+Code:wght@500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00ff9d",
+                        "secondary": "#00f0ff",
+                        "background-light": "#111618",
+                        "background-dark": "#050a0e",
+                        "glass-border": "rgba(0, 255, 157, 0.3)",
+                        "glass-bg": "rgba(5, 10, 14, 0.7)",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "system-ui", "sans-serif"],
+                        "body": ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+                        "mono": ["Fira Code", "ui-monospace", "monospace"],
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        /* :root Variables */
+        :root {
+            /* Font families */
+            --font-display: 'Space Grotesk', system-ui, sans-serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+            --font-mono: 'Fira Code', ui-monospace, SFMono-Regular, monospace;
+
+            /* Font sizes */
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem;
+            --text-4xl: 2.25rem;
+            --text-5xl: 3rem;
+            --text-6xl: 3.75rem;
+
+            /* Text colors */
+            --text-primary: #f5f5ff;
+            --text-secondary: #d0d4ff;
+            --text-muted: #a0a9b8;
+            --text-accent: #7dd3fc;
+            --text-mono: #22c55e;
+            --text-success: #10b981;
+        }
+
+        /* Global Styles */
+        body {
+            cursor: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2V6M12 18V22M2 12H6M18 12H22' stroke='%2300ff9d' stroke-width='2'/%3E%3Ccircle cx='12' cy='12' r='2' fill='%2300ff9d'/%3E%3C/svg%3E") 12 12, auto;
+        }
+
+        input, textarea {
+            caret-color: #00ff9d;
+            font-family: var(--font-mono);
+            letter-spacing: -0.5px;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050a0e;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #283339;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00ff9d;
+        }
+
+        /* Components & Utilities */
+        .glass-panel {
+            background: rgba(5, 10, 14, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 255, 157, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 255, 157, 0.1);
+            transition: all 0.2s ease-out;
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .glass-panel::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            mix-blend-mode: overlay;
+            pointer-events: none;
+        }
+
+        .glass-panel:hover {
+            border-color: #00ff9d;
+            box-shadow: 0 0 25px rgba(0, 255, 157, 0.2);
+            transform: scale(1.02);
+        }
+
+        .text-glow {
+            color: var(--text-accent);
+            text-shadow: 0 0 10px rgba(125, 211, 252, 0.6), 0 0 20px rgba(125, 211, 252, 0.3);
+            transition: text-shadow 150ms ease;
+        }
+
+        .text-glow:hover {
+            text-shadow: 0 0 15px rgba(125, 211, 252, 0.8), 0 0 30px rgba(125, 211, 252, 0.5);
+        }
+
+        /* Animations */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: pulse 8s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+
+            100% {
+                transform: scale(1.2);
+                opacity: 0.5;
+            }
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #00ff9d;
+            box-shadow: 0 0 10px #00ff9d;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .cursor-blink::after {
+            content: '▋';
+            display: inline-block;
+            margin-left: 2px;
+            color: #00ff9d;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .text-pixelated {
+            font-family: var(--font-mono);
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-shadow: -1px -1px 0 rgba(125, 211, 252, 0.5), 1px 1px 0 rgba(125, 211, 252, 0.3);
+            filter: contrast(1.1);
+        }
+
+
+        .reveal-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scanlines {
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0),
+                rgba(255,255,255,0) 50%,
+                rgba(0,0,0,0.2) 50%,
+                rgba(0,0,0,0.2)
+            );
+            background-size: 100% 3px;
+        }
+
+        .glitch-text {
+            position: relative;
+            display: inline-block;
+        }
+
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+            display: none; /* Hidden until triggered */
+            background: #050a0e; /* Matches bg to mask original */
+        }
+
+        .glitch-text::before {
+            color: #00ff9d;
+            z-index: -1;
+        }
+
+        .glitch-text::after {
+            color: #00f0ff;
+            z-index: -2;
+        }
+
+        .glitch-hover:hover::before {
+            display: block;
+            animation: glitch-anim-1 0.3s infinite linear alternate-reverse;
+        }
+        .glitch-hover:hover::after {
+            display: block;
+            animation: glitch-anim-2 0.3s infinite linear alternate-reverse;
+        }
+
+        .glitch-idle::before,
+        .glitch-idle::after {
+            display: block;
+            animation-duration: 8s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            background: transparent; /* Keep gradient visible for hero */
+        }
+        .glitch-idle::before { animation-name: glitch-idle-1; }
+        .glitch-idle::after { animation-name: glitch-idle-2; }
+
+        .glitch-button {
+            position: relative;
+            overflow: hidden;
+        }
+        .glitch-button:hover {
+            animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+        }
+        .glitch-button:hover span {
+            filter: drop-shadow(-2px 0 rgba(0,255,157,0.5)) drop-shadow(2px 0 rgba(0,240,255,0.5));
+        }
+
+        @keyframes glitch-anim-1 {
+            0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 1px); }
+            20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -1px); }
+            40% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 2px); }
+            60% { clip-path: inset(80% 0 5% 0); transform: translate(2px, -2px); }
+            80% { clip-path: inset(10% 0 60% 0); transform: translate(-1px, 1px); }
+            100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip-path: inset(10% 0 60% 0); transform: translate(2px, -1px); }
+            20% { clip-path: inset(80% 0 5% 0); transform: translate(-2px, 2px); }
+            40% { clip-path: inset(20% 0 80% 0); transform: translate(1px, -2px); }
+            60% { clip-path: inset(60% 0 10% 0); transform: translate(-1px, 2px); }
+            80% { clip-path: inset(40% 0 50% 0); transform: translate(2px, 1px); }
+            100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+        }
+        @keyframes glitch-skew {
+            0% { transform: skew(0deg); }
+            20% { transform: skew(-2deg); }
+            40% { transform: skew(2deg); }
+            60% { transform: skew(-1deg); }
+            80% { transform: skew(1deg); }
+            100% { transform: skew(0deg); }
+        }
+        
+        /* Idle Animation: Mostly stable, brief glitch every few seconds */
+        @keyframes glitch-idle-1 {
+            0%, 95% { clip-path: inset(0 0 0 0); transform: translate(0); opacity: 0; }
+            96% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 1px); opacity: 1; }
+            97% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -1px); opacity: 1; }
+            98% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 2px); opacity: 1; }
+            99% { clip-path: inset(80% 0 5% 0); transform: translate(2px, -2px); opacity: 1; }
+            100% { clip-path: inset(0 0 0 0); transform: translate(0); opacity: 0; }
+        }
+        @keyframes glitch-idle-2 {
+            0%, 95% { clip-path: inset(0 0 0 0); transform: translate(0); opacity: 0; }
+            96% { clip-path: inset(10% 0 60% 0); transform: translate(2px, -1px); opacity: 1; }
+            97% { clip-path: inset(80% 0 5% 0); transform: translate(-2px, 2px); opacity: 1; }
+            98% { clip-path: inset(20% 0 80% 0); transform: translate(1px, -2px); opacity: 1; }
+            99% { clip-path: inset(60% 0 10% 0); transform: translate(-1px, 2px); opacity: 1; }
+            100% { clip-path: inset(0 0 0 0); transform: translate(0); opacity: 0; }
+        }
+
+        /* Accessibility & Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            .glitch-text::before, .glitch-text::after, .glitch-button:hover, .reveal-section, .blob {
+                animation: none !important;
+                display: none !important;
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+
+        #story-intro-overlay {
+            background-color: #050a0e;
+            /* Cinematic dark gradient + scanline effect */
+            background-image: 
+                radial-gradient(circle at 50% 50%, #111618 0%, #050a0e 80%),
+                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 100%, 100% 3px, 3px 100%;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out, visibility 0.5s;
+        }
+        #story-intro-overlay.intro-hidden {
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.95);
+            pointer-events: none;
+        }
+        
+        .progress-wrapper {
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            margin-top: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #00ff9d;
+            width: 0%;
+            transition: width 0.2s ease-out;
+            box-shadow: 0 0 10px #00ff9d;
+        }
+
+        .console-line {
+            display: flex;
+            align-items: center;
+            min-height: 1.5em; /* Prevent layout shift */
+        }
+
+
+        .pixelated-text {
+            font-family: var(--font-mono);
+            letter-spacing: -0.5px;
+        }
+
+        .contact-input {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-input:focus {
+            border-color: #00ff9d;
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
+            background: rgba(0, 255, 157, 0.05);
+        }
+
+        .input-group:focus-within label {
+            color: #00ff9d;
+            animation: label-glitch 0.4s ease-in-out;
+            text-shadow: 2px 0 rgba(255,0,0,0.5), -2px 0 rgba(0,0,255,0.5);
+        }
+
+        @keyframes label-glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 1px); }
+            40% { transform: translate(2px, -1px); }
+            60% { transform: translate(-1px, 1px); }
+            80% { transform: translate(1px, -1px); }
+            100% { transform: translate(0); }
+        }
+
+        .btn-transmitting {
+            position: relative;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .btn-transmitting::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 255, 157, 0.1) 0px,
+                rgba(0, 255, 157, 0.1) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            animation: scan-down 1s linear infinite;
+        }
+
+        @keyframes scan-down {
+            from { background-position: 0 0; }
+            to { background-position: 0 100%; }
+        }
+
+        .btn-success {
+            background: #00ff9d !important;
+            color: #000 !important;
+            box-shadow: 0 0 20px #00ff9d;
+            border-color: #00ff9d;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #00ff9d;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #00ff9d;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0% { opacity: 0.5; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        @keyframes orb-float {
+            0%, 100% { transform: translate(var(--orb-x, 0px), var(--orb-y, 0px)) scale(1); }
+            33% { transform: translate(calc(30px + var(--orb-x, 0px)), calc(-30px + var(--orb-y, 0px))) scale(1.1); }
+            66% { transform: translate(calc(-20px + var(--orb-x, 0px)), calc(20px + var(--orb-y, 0px))) scale(0.9); }
+        }
+    </style>
+</head>
+
+<body class="bg-background-dark text-[var(--text-primary)] font-body selection:bg-primary selection:text-black overflow-x-hidden" id="top">
+    <!-- Background Elements -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="blob bg-green-600 w-96 h-96 top-0 left-0 -translate-x-1/2 -translate-y-1/2"></div>
+        <div
+            class="blob bg-primary w-[500px] h-[500px] bottom-0 right-0 translate-x-1/3 translate-y-1/3 animation-delay-2000 opacity-30">
+        </div>
+        <div class="blob bg-secondary w-80 h-80 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20"></div>
+    </div>
+
+    <!-- Story Mode Intro Overlay -->
+    <div id="story-intro-overlay" class="fixed inset-0 flex items-center justify-center" role="dialog" aria-modal="true" aria-label="System Boot Sequence">
+        <div class="story-console glass-panel p-6 md:p-10 rounded-xl max-w-2xl w-full mx-4 font-mono text-[var(--text-sm)] md:text-[var(--text-base)] relative flex flex-col min-h-[240px] border-primary/30 shadow-[0_0_50px_rgba(0,255,157,0.15)]">
+            <!-- Header -->
+            <div class="flex justify-between items-center mb-6 border-b border-white/10 pb-2 text-[10px] md:text-xs text-[var(--text-muted)] uppercase tracking-widest font-mono">
+                <span>System Boot // v2.0.5</span>
+                <span id="intro-timer">00:00:00</span>
+            </div>
+            
+            <div id="console-lines" class="flex flex-col gap-2 text-gray-300 flex-grow">
+                <!-- Lines injected by JS for accessibility, ensure content is available elsewhere if skipped -->
+            </div>
+            
+            <div class="progress-wrapper">
+                <div id="intro-progress" class="progress-fill" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+        <button id="story-skip" class="absolute bottom-8 right-8 text-xs text-[var(--text-muted)] hover:text-primary transition-colors font-mono uppercase tracking-wider flex items-center gap-2 group cursor-pointer z-50" aria-label="Skip Intro Animation">
+            <span class="group-hover:underline decoration-primary underline-offset-4">Skip Intro</span>
+            <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">fast_forward</span>
+            <span class="border border-white/20 rounded px-1.5 py-0.5 text-[10px] ml-2 hidden md:inline-block">ESC</span>
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-4 py-4 md:px-10" role="navigation" aria-label="Main Navigation">
+        <div class="glass-panel rounded-full max-w-5xl mx-auto px-6 py-3 flex items-center justify-between border-primary/30">
+            <a class="flex items-center gap-3 text-white group" href="#top" aria-label="Veer Rathod Home">
+                <div
+                    class="size-8 rounded-full bg-primary/10 border border-primary/50 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-black transition-colors duration-300 shadow-[0_0_10px_rgba(0,255,157,0.3)]">
+                    <span class="material-symbols-outlined text-lg">terminal</span>
+                </div>
+                <h2 class="font-display font-bold text-lg tracking-tight glitch-text glitch-hover" data-text="Veer Rathod">Veer Rathod</h2>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a class="text-sm font-medium text-[var(--text-secondary)] hover:text-primary transition-colors nav-link uppercase tracking-wider"
+                    href="#about">About</a>
+                <a class="text-sm font-medium text-[var(--text-secondary)] hover:text-primary transition-colors nav-link uppercase tracking-wider"
+                    href="#projects">Projects</a>
+                <a class="text-sm font-medium text-[var(--text-secondary)] hover:text-primary transition-colors nav-link uppercase tracking-wider"
+                    href="#skills">Skills</a>
+                <a class="text-sm font-medium text-[var(--text-secondary)] hover:text-primary transition-colors nav-link uppercase tracking-wider"
+                    href="#timeline">Timeline</a>
+            </div>
+            <a class="hidden md:flex cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 px-5 bg-primary hover:bg-white text-black hover:text-primary transition-colors text-sm font-bold leading-normal shadow-[0_0_15px_rgba(0,255,157,0.4)] glitch-button"
+                href="#contact">
+                <span>Hire Me</span>
+            </a>
+            <!-- Mobile Menu Icon -->
+            <button class="md:hidden text-white" aria-label="Open Menu">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+    </nav>
+    <!-- Main Content Wrapper -->
+    <main class="relative z-10 flex flex-col items-center w-full" role="main">
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen w-full flex items-center justify-center pt-20 px-4 md:px-10 lg:px-20 max-w-7xl reveal-section" aria-label="Hero Section">
+            <div class="grid lg:grid-cols-2 gap-12 items-center w-full">
+                <div class="flex flex-col gap-6 order-2 lg:order-1 text-center lg:text-left">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/50 text-primary text-xs font-bold w-fit mx-auto lg:mx-0 shadow-[0_0_10px_rgba(0,255,157,0.2)]">
+                        <span class="relative flex h-2 w-2">
+                            <span
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                        </span>
+                        Available for Internships
+                    </div>
+                    <h1
+                        class="font-display font-black text-5xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight text-[var(--text-primary)]">
+                        Building the <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary text-glow glitch-text glitch-idle" data-text="Future">Future</span>
+                        of Tech
+                    </h1>
+                    <h2 id="hero-description" class="text-[var(--text-secondary)] text-lg md:text-xl font-light max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        First-year Computer Engineering student &amp; SIH Internal Hackathon Winner. A
+                        developer transforming ideas into digital reality with React, Next.js, and AI.
+                    </h2>
+                    <p class="text-[var(--text-muted)] text-sm md:text-base leading-relaxed max-w-xl mx-auto lg:mx-0">
+                        Quick learner with strong problem‑solving ability and coding skills in C++ and HTML, actively
+                        participating in hackathons and councils, with a commitment to digital innovation.
+                    </p>
+                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start pt-4">
+                        <a class="group flex items-center justify-center gap-2 rounded-xl h-12 px-8 bg-gradient-to-r from-primary to-teal-400 text-black text-base font-bold hover:scale-105 transition-transform duration-200 shadow-[0_0_20px_rgba(0,255,157,0.4)] glitch-button"
+                            href="#projects">
+                            <span>View Projects</span>
+                            <span
+                                class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </a>
+                        <a
+                        href="Veer_Rathod_Resume.pdf"
+                        download="Veer_Rathod_Resume.pdf"
+                        class="group flex items-center justify-center gap-2 rounded-xl h-12 px-8 glass-panel text-primary text-base font-bold hover:bg-primary/10 transition-colors border-primary/30 glitch-button" aria-label="Download Resume PDF"
+                        >
+                     <span class="material-symbols-outlined text-lg">download</span>
+                     <span>Resume</span>
+                        </a>
+
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2 relative flex justify-center items-center h-[400px] md:h-[500px]">
+                    <!-- Abstract 3D Representation -->
+                    <div class="relative w-full h-full max-w-[500px]">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-secondary/20 rounded-full blur-[60px] animate-pulse">
+                        </div>
+                        <!-- Floating Glass Cards Illustration -->
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-auto aspect-square glass-panel rounded-2xl flex items-center justify-center overflow-hidden rotate-[-5deg] hover:rotate-0 transition-transform duration-700 shadow-2xl z-10 p-2 border-primary/30"
+                            aria-hidden="true">
+                            <div
+                                class="w-full h-full bg-[#050a0e] rounded-xl flex flex-col p-4 relative overflow-hidden border border-white/5">
+                                <div class="flex gap-2 mb-4">
+                                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                </div>
+                                <div class="space-y-2 font-mono text-xs text-[var(--text-mono)]">
+                                    <p>&gt; npm install next react-dom</p>
+                                    <p>&gt; initializing AI agent...</p>
+                                    <p class="cursor-blink">&gt; deploying to vercel...</p>
+                                    <p class="text-green-400 hidden">&gt; build success (342ms)</p>
+                                </div>
+                                <div
+                                    class="mt-auto h-24 w-full bg-gradient-to-t from-primary/20 to-transparent rounded-lg">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Floating Decorative Elements -->
+                        <div class="absolute top-10 right-0 glass-panel p-3 rounded-xl animate-[bounce_3s_infinite] border-secondary/30">
+                            <span class="material-symbols-outlined text-4xl text-secondary">code</span>
+                        </div>
+                        <div class="absolute bottom-20 left-0 glass-panel p-3 rounded-xl animate-[bounce_4s_infinite] border-primary/30">
+                            <span class="material-symbols-outlined text-4xl text-primary">smart_toy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- About Section -->
+        <section class="w-full py-20 px-4 md:px-10 max-w-7xl reveal-section" id="about" aria-labelledby="about-heading">
+            <div class="flex flex-col gap-2 mb-10 text-center md:text-left">
+                <h2 id="about-heading" class="font-display text-3xl md:text-4xl font-bold text-[var(--text-primary)]">About Veer</h2>
+                <div class="h-1 w-20 bg-primary rounded-full mx-auto md:mx-0"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="glass-panel p-8 rounded-2xl flex flex-col justify-center h-full border-primary/20 scanlines">
+                    <h3 class="text-2xl font-bold text-[var(--text-primary)] mb-4">Bio &amp; Education</h3>
+                    <p class="text-[var(--text-secondary)] leading-relaxed mb-6">
+                        I'm a first-year Computer Engineering student at <strong class="text-[var(--text-primary)]">K.J. Somaiya School
+                            of Engineering</strong> (2025–2029). My journey into tech started with a curiosity for how
+                        things work, leading me to master core logic in C++ and creative frontend development.
+                    </p>
+                    <p class="text-[var(--text-secondary)] leading-relaxed">
+                        Recently, I led my team to victory in the <strong class="text-primary">SIH Internal
+                            Hackathon</strong> with our project 'InternYojna'. I'm passionate about integrating AI into
+                        development workflows to build smarter, faster solutions.
+                    </p>
+                </div>
+                <div class="glass-panel p-1 rounded-2xl h-[300px] md:h-auto overflow-hidden relative group border-primary/20">
+                    <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 z-0"></div>
+                    <div class="w-full h-full bg-cover bg-center rounded-xl opacity-80 group-hover:scale-105 transition-transform duration-700"
+                        aria-hidden="true"
+                        >
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <div class="grid grid-cols-3 gap-8 text-center">
+                            <div class="flex flex-col items-center gap-2">
+                                <span class="material-symbols-outlined text-4xl text-primary">code</span>
+                                <span class="text-xs font-mono text-[var(--text-muted)]">C++</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-2">
+                                <span class="material-symbols-outlined text-4xl text-secondary">html</span>
+                                <span class="text-xs font-mono text-[var(--text-muted)]">React</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-2">
+                                <span class="material-symbols-outlined text-4xl text-teal-400">smart_toy</span>
+                                <span class="text-xs font-mono text-[var(--text-muted)]">AI</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Featured Projects -->
+        <section class="w-full py-20 px-4 md:px-10 max-w-7xl reveal-section" id="projects" aria-labelledby="projects-heading">
+            <div class="flex flex-col gap-2 mb-12">
+                <h2 id="projects-heading" class="font-display text-3xl md:text-4xl font-bold text-[var(--text-primary)]">Featured Project</h2>
+                <p class="text-[var(--text-muted)]">What I've been working on recently</p>
+            </div>
+            <!-- InternYojna Card -->
+            <div class="glass-panel rounded-3xl p-6 md:p-10 border-t border-primary/20 relative overflow-hidden group scanlines">
+                <!-- Background Glow -->
+                <div
+                    class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 blur-[100px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/2">
+                </div>
+                <div class="grid lg:grid-cols-2 gap-10 items-center relative z-10">
+                    <!-- Text Content -->
+                    <div class="flex flex-col gap-6">
+                        <div class="flex items-center gap-3">
+                            <span
+                                class="px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/30 text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-[0_0_10px_rgba(0,255,157,0.2)]">
+                                <span class="material-symbols-outlined text-sm">trophy</span>
+                                SIH Internal Hackathon Winner
+                            </span>
+                            <span class="text-[var(--text-muted)] text-sm font-mono">2025</span>
+                        </div>
+                        <h3 class="text-4xl font-display font-bold text-[var(--text-primary)] glitch-text glitch-hover" data-text="InternYojna">InternYojna</h3>
+                        <p class="text-[var(--text-secondary)] leading-relaxed">
+                            A comprehensive platform bridging the gap between students and internships. Led the team
+                            through the Smart India Hackathon internal round, delivering a fully functional prototype
+                            with real-time translation and accessibility features.
+                        </p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3 text-[var(--text-muted)] text-sm">
+                                <span class="material-symbols-outlined text-primary text-lg mt-0.5">check_circle</span>
+                                <span>Real-time language translation for inclusivity</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-[var(--text-muted)] text-sm">
+                                <span class="material-symbols-outlined text-primary text-lg mt-0.5">check_circle</span>
+                                <span>Dedicated accessibility features for diverse users</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-[var(--text-muted)] text-sm">
+                                <span class="material-symbols-outlined text-primary text-lg mt-0.5">check_circle</span>
+                                <span>AI-assisted UI design and workflows</span>
+                            </li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            <span
+                                class="px-3 py-1.5 rounded-lg bg-black/50 text-[var(--text-mono)] font-mono text-xs border border-primary/20">React.js</span>
+                            <span
+                                class="px-3 py-1.5 rounded-lg bg-black/50 text-[var(--text-mono)] font-mono text-xs border border-primary/20">Next.js</span>
+                            <span
+                                class="px-3 py-1.5 rounded-lg bg-black/50 text-[var(--text-mono)] font-mono text-xs border border-primary/20">TypeScript</span>
+                            <span
+                                class="px-3 py-1.5 rounded-lg bg-black/50 text-[var(--text-mono)] font-mono text-xs border border-primary/20">MongoDB</span>
+                            <span
+                                class="px-3 py-1.5 rounded-lg bg-black/50 text-[var(--text-mono)] font-mono text-xs border border-primary/20">Auth</span>
+                        </div>
+                        <div class="flex gap-4 mt-4">
+                            <a href="https://github.com/veerrathod-hue/Innov8her-hims" 
+                             target="_blank" 
+                             rel="noopener noreferrer"
+                             class="flex items-center gap-2 text-white hover:text-primary transition-colors font-bold text-sm"
+                             aria-label="View InternYojna Code on GitHub">
+                             <span>View Code</span>
+                             <span class="material-symbols-outlined text-lg">code</span>
+                             </a>
+
+                        </div>
+                    </div>
+                    <!-- Visual Mockup -->
+                    <div class="relative h-full min-h-[300px] flex items-center justify-center perspective-1000">
+
+                        <div
+                            class="relative w-full aspect-video glass-panel rounded-xl overflow-hidden border border-primary/20 shadow-2xl transform transition-transform duration-500 group-hover:rotate-y-6 group-hover:scale-105">
+                            <div
+                                class="absolute top-0 left-0 w-full h-8 bg-gray-900/90 flex items-center px-4 gap-2 border-b border-white/10 z-20">
+                                <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                            </div>
+                            <div class="w-full h-full bg-cover bg-top pt-8"
+                                aria-label="Mockup of InternYojna dashboard showing user statistics and internship listings" role="img"
+                                style="background-image: url('https://i.pinimg.com/1200x/a3/95/31/a39531f4a2f2307507cf4288f82a5a14.jpg');">
+                            </div>
+                            <!-- Floating detail cards -->
+                            <!-- Clickable 'View' Button for PDF -->
+<a 
+    href="./InternYojna-Docs.pdf" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    class="absolute bottom-4 right-4 bg-black/80 backdrop-blur-md p-3 rounded-lg border border-primary/30 shadow-lg transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 hover:bg-black/90 cursor-pointer z-30"
+>
+    <div class="flex items-center gap-2 text-xs text-white">
+        <!-- Changed icon to 'description' which looks like a document/PDF -->
+        <span class="material-symbols-outlined text-sm text-green-400">description</span>
+        <span>View PDF</span>
+    </div>
+</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Future Projects Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+                <div
+                    class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center gap-3 min-h-[200px] opacity-60 hover:opacity-100 transition-opacity border-dashed border-2 border-white/10 hover:border-primary hover:shadow-[0_0_15px_rgba(0,255,157,0.2)]">
+                    <div class="p-3 bg-white/5 rounded-full">
+                        <span class="material-symbols-outlined text-3xl text-gray-400">construction</span>
+                    </div>
+                    <p class="font-bold text-[var(--text-secondary)] glitch-text glitch-hover" data-text="Portfolio v2">Portfolio v2</p>
+                    <span class="text-xs text-primary bg-primary/10 px-2 py-1 rounded">Coming Soon</span>
+                </div>
+                <div
+                    class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center gap-3 min-h-[200px] opacity-60 hover:opacity-100 transition-opacity border-dashed border-2 border-white/10 hover:border-primary hover:shadow-[0_0_15px_rgba(0,255,157,0.2)]">
+                    <div class="p-3 bg-white/5 rounded-full">
+                        <span class="material-symbols-outlined text-3xl text-gray-400">rocket_launch</span>
+                    </div>
+                    <p class="font-bold text-[var(--text-secondary)] glitch-text glitch-hover" data-text="AI SaaS Tool">AI SaaS Tool</p>
+                    <span class="text-xs text-primary bg-primary/10 px-2 py-1 rounded">Coming Soon</span>
+                </div>
+                <div
+                    class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center gap-3 min-h-[200px] opacity-60 hover:opacity-100 transition-opacity border-dashed border-2 border-white/10 hover:border-primary hover:shadow-[0_0_15px_rgba(0,255,157,0.2)]">
+                    <div class="p-3 bg-white/5 rounded-full">
+                        <span class="material-symbols-outlined text-3xl text-gray-400">code_blocks</span>
+                    </div>
+                    <p class="font-bold text-[var(--text-secondary)] glitch-text glitch-hover" data-text="Open Source">Open Source</p>
+                    <span class="text-xs text-primary bg-primary/10 px-2 py-1 rounded">Coming Soon</span>
+                </div>
+            </div>
+        </section>
+        <!-- Skills Section -->
+        <section class="w-full py-20 px-4 md:px-10 max-w-7xl reveal-section" id="skills" aria-labelledby="skills-heading">
+            <h2 id="skills-heading" class="font-display text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-10 text-center">Technical Arsenal</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Programming -->
+                <div class="glass-panel p-6 rounded-2xl hover:-translate-y-1 transition-transform duration-300">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="p-2 bg-primary/10 rounded-lg text-primary border border-primary/20">
+                            <span class="material-symbols-outlined">terminal</span>
+                        </span>
+                        <h3 class="font-bold text-lg text-[var(--text-primary)]">Programming</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-sm text-[var(--text-secondary)] border border-white/5 font-mono">C++
+                        </span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-white/5 text-sm text-[var(--text-secondary)] border border-white/5 font-mono">HTML</span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-white/5 text-sm text-[var(--text-secondary)] border border-white/5 font-mono">JavaScript</span>
+                    </div>
+                </div>
+                <!-- Frontend -->
+                <div class="glass-panel p-6 rounded-2xl hover:-translate-y-1 transition-transform duration-300">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="p-2 bg-secondary/10 rounded-lg text-secondary border border-secondary/20">
+                            <span class="material-symbols-outlined">web</span>
+                        </span>
+                        <h3 class="font-bold text-lg text-[var(--text-primary)]">Frontend</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-3 py-1 rounded-full bg-white/5 text-sm text-[var(--text-secondary)] border border-white/5 font-mono">React.js</span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-white/5 text-sm text-[var(--text-secondary)] border border-white/5 font-mono">Next.js</span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-white/5 text-sm text-[var(--text-secondary)] border border-white/5 font-mono">TailwindCSS</span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-white/5 text-sm text-[var(--text-secondary)] border border-white/5 font-mono">Framer
+                            Motion</span>
+                    </div>
+                </div>
+                <!-- Backend & DB -->
+                <div class="glass-panel p-6 rounded-2xl hover:-translate-y-1 transition-transform duration-300">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="p-2 bg-teal-500/10 rounded-lg text-teal-400 border border-teal-500/20">
+                            <span class="material-symbols-outlined">database</span>
+                        </span>
+                        <h3 class="font-bold text-lg text-[var(--text-primary)]">Backend</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-3 py-1 rounded-full bg-white/5 text-sm text-[var(--text-secondary)] border border-white/5 font-mono">Node.js
+                            (Basic)</span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-white/5 text-sm text-[var(--text-secondary)] border border-white/5 font-mono">MongoDB</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-sm text-gray-300 border border-white/5 font-mono">REST
+                            APIs</span>
+                    </div>
+                </div>
+                <!-- Soft Skills & Tools -->
+                <div class="glass-panel p-6 rounded-2xl hover:-translate-y-1 transition-transform duration-300">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="p-2 bg-primary/10 rounded-lg text-primary border border-primary/20">
+                            <span class="material-symbols-outlined">psychology</span>
+                        </span>
+                        <h3 class="font-bold text-lg text-[var(--text-primary)]">General</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-sm text-[var(--text-secondary)] border border-white/5 font-mono">Git
+                            &amp; GitHub</span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-white/5 text-sm text-[var(--text-secondary)] border border-white/5 font-mono">Leadership</span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-white/5 text-sm text-[var(--text-secondary)] border border-white/5 font-mono">Teamwork</span>
+                        <span
+                            class="px-3 py-1 rounded-full bg-white/5 text-sm text-[var(--text-secondary)] border border-white/5 font-mono">Problem
+                            Solving</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Timeline / Education -->
+        <section class="w-full py-20 px-4 md:px-10 max-w-4xl reveal-section" id="timeline" aria-labelledby="timeline-heading">
+            <h2 id="timeline-heading" class="font-display text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-12 text-center">Education Journey</h2>
+            <div class="relative pl-8 md:pl-0">
+                <!-- Vertical Line -->
+                <div
+                    class="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/0 via-primary to-primary/0 md:-translate-x-1/2 shadow-[0_0_10px_#00ff9d]">
+                </div>
+                <!-- Item 1: College -->
+                <div class="relative flex flex-col md:flex-row items-center justify-between mb-12 group">
+                    <div class="md:w-5/12 order-1 md:order-1 text-left md:text-right mb-4 md:mb-0">
+                        <div
+                            class="glass-panel p-5 rounded-xl border-l-4 border-l-primary hover:bg-white/5 transition-colors shadow-[0_0_15px_rgba(0,255,157,0.1)]">
+                            <h3 class="text-xl font-bold text-[var(--text-primary)]">B.Tech Computer Engineering</h3>
+                            <p class="text-primary font-medium text-sm mt-1">K.J. Somaiya School of Engineering</p>
+                            <p class="text-[var(--text-muted)] text-xs mt-2">SIH Internal Hackathon Winner</p>
+                        </div>
+                    </div>
+                    <div
+                        class="absolute left-8 md:left-1/2 w-4 h-4 bg-primary rounded-full border-4 border-[#0a0f18] shadow-[0_0_10px_#00ff9d] z-10 -translate-x-1/2 md:translate-x-[-50%]">
+                    </div>
+                    <div class="md:w-5/12 order-1 md:order-2 pl-8 md:pl-0 text-left">
+                        <span
+                            class="text-2xl font-display font-bold text-[var(--text-muted)] group-hover:text-primary transition-colors font-mono">2025
+                            – 2029</span>
+                    </div>
+                </div>
+                <!-- Item 2: Junior College -->
+                <div class="relative flex flex-col md:flex-row items-center justify-between mb-12 group">
+                    <div class="md:w-5/12 order-1 md:order-2 text-left mb-4 md:mb-0">
+                        <div
+                            class="glass-panel p-5 rounded-xl border-r-4 md:border-r-0 md:border-l-4 border-primary hover:bg-white/5 transition-colors shadow-[0_0_15px_rgba(0,255,157,0.1)]">
+                            <h3 class="text-xl font-bold text-[var(--text-primary)]">HSC (Science + CS)</h3>
+                            <p class="text-primary font-medium text-sm mt-1">Rustomjee International School</p>
+                            <p class="text-[var(--text-muted)] text-xs mt-2">Physics, Chemistry, Maths, CS</p>
+                        </div>
+                    </div>
+                    <div
+                        class="absolute left-8 md:left-1/2 w-4 h-4 bg-gray-600 rounded-full border-4 border-[#0a0f18] z-10 -translate-x-1/2 md:translate-x-[-50%] group-hover:bg-primary group-hover:shadow-[0_0_10px_#00ff9d] transition-colors">
+                    </div>
+                    <div class="md:w-5/12 order-1 md:order-1 pl-8 md:pl-0 text-left md:text-right">
+                        <span
+                            class="text-2xl font-display font-bold text-[var(--text-muted)] group-hover:text-primary transition-colors font-mono">2023
+                            – 2025</span>
+                    </div>
+                </div>
+                <!-- Item 3: School -->
+                <div class="relative flex flex-col md:flex-row items-center justify-between mb-12 group">
+                    <div class="md:w-5/12 order-1 md:order-1 text-left md:text-right mb-4 md:mb-0">
+                        <div
+                            class="glass-panel p-5 rounded-xl border-l-4 border-l-primary hover:bg-white/5 transition-colors shadow-[0_0_15px_rgba(0,255,157,0.1)]">
+                            <h3 class="text-xl font-bold text-[var(--text-primary)]">Secondary School (SSC)</h3>
+                            <p class="text-primary font-medium text-sm mt-1">St. Francis D’Assisi High School</p>
+                            <p class="text-[var(--text-muted)] text-xs mt-2">Foundation in Logical Thinking</p>
+                        </div>
+                    </div>
+                    <div
+                        class="absolute left-8 md:left-1/2 w-4 h-4 bg-gray-600 rounded-full border-4 border-[#0a0f18] z-10 -translate-x-1/2 md:translate-x-[-50%] group-hover:bg-primary group-hover:shadow-[0_0_10px_#00ff9d] transition-colors">
+                    </div>
+                    <div class="md:w-5/12 order-1 md:order-2 pl-8 md:pl-0 text-left">
+                        <span
+                            class="text-2xl font-display font-bold text-[var(--text-muted)] group-hover:text-primary transition-colors font-mono">2015
+                            – 2023</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Achievements -->
+        <section class="w-full py-20 px-4 md:px-10 max-w-7xl reveal-section" aria-labelledby="achievements-heading">
+            <h2 id="achievements-heading" class="font-display text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-10">Achievements</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div
+                    class="glass-panel p-6 rounded-2xl flex flex-col gap-4 hover:-translate-y-2 transition-transform duration-300 border-t-2 border-t-primary/50">
+                    <div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined text-3xl">emoji_events</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-[var(--text-primary)]">SIH Internal Hackathon Winner</h3>
+                    <p class="text-[var(--text-muted)] text-sm">Winner of the Internal Smart India Hackathon round for project
+                        InternYojna, showcasing rapid development and teamwork.</p>
+                </div>
+                <div
+                    class="glass-panel p-6 rounded-2xl flex flex-col gap-4 hover:-translate-y-2 transition-transform duration-300 border-t-2 border-t-secondary/50">
+                    <div class="size-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+                        <span class="material-symbols-outlined text-3xl">groups</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-[var(--text-primary)]">Leadership</h3>
+                    <p class="text-[var(--text-muted)] text-sm">Active in councils and hackathons, leading teams under pressure and
+                        fostering collaborative environments.</p>
+                </div>
+                <div
+                    class="glass-panel p-6 rounded-2xl flex flex-col gap-4 hover:-translate-y-2 transition-transform duration-300 border-t-2 border-t-teal-500/50">
+                    <div class="size-12 rounded-xl bg-teal-500/10 flex items-center justify-center text-teal-500">
+                        <span class="material-symbols-outlined text-3xl">auto_fix</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-[var(--text-primary)]">AI Integration</h3>
+                    <p class="text-[var(--text-muted)] text-sm">Experienced in leveraging AI technologies for accelerated
+                        development workflows and smarter UI design.</p>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Section -->
+        <section class="w-full py-20 px-4 md:px-10 max-w-5xl mb-20 reveal-section contact-container" id="contact" aria-labelledby="contact-heading">
+            <div class="glass-panel rounded-3xl p-8 md:p-12 overflow-hidden relative">
+                <!-- Orbs Background -->
+                <div class="contact-orb absolute -top-24 -right-24 w-80 h-80 bg-primary/20 rounded-full blur-[80px] pointer-events-none" style="animation: orb-float 8s infinite ease-in-out;"></div>
+                <div class="contact-orb absolute -bottom-24 -left-24 w-80 h-80 bg-secondary/20 rounded-full blur-[80px] pointer-events-none" style="animation: orb-float 10s infinite ease-in-out reverse;"></div>
+                <div class="contact-orb absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-purple-500/10 rounded-full blur-[60px] pointer-events-none" style="animation: orb-float 12s infinite ease-in-out 1s;"></div>
+
+                <div class="grid md:grid-cols-2 gap-12 relative z-10">
+                    <div>
+                        <h2 id="contact-heading" class="font-display text-4xl font-bold text-[var(--text-primary)] mb-4">Let's Build Something</h2>
+                        <p class="text-[var(--text-secondary)] mb-8">
+                            I'm open to internships, collaborations, and hackathon teams. Whether you have a question or
+                            just want to say hi, I'll try my best to get back to you!
+                        </p>
+                        <div class="space-y-4">
+                         <a class="flex items-center gap-4 text-white hover:text-primary transition-colors p-3 rounded-lg hover:bg-primary/5 border border-transparent hover:border-primary/20" 
+                           href="mailto:veer.rathod@somaiya.edu?subject=Portfolio%20Inquiry&body=Hi%20Veer,">
+                           <div class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                           <span class="material-symbols-outlined text-primary">mail</span>
+                           </div>
+                           <span class="font-medium">veer.rathod@somaiya.edu</span>
+                         </a>
+
+                            <div class="flex items-center gap-4 text-white p-3 rounded-lg border border-transparent">
+                                <div class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                    <span class="material-symbols-outlined text-primary">location_on</span>
+                                </div>
+                                <span class="font-medium">Mumbai, India</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 mt-8">
+                            <a class="size-10 rounded-full glass-panel flex items-center justify-center hover:bg-primary hover:text-black transition-all"
+                                href="https://github.com/veerrathod-hue" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+                                <img alt="GitHub" class="w-5 h-5 invert group-hover:invert-0"
+                                    src="https://cdn-icons-png.flaticon.com/512/25/25231.png" />
+                            </a>
+                            <a class="size-10 rounded-full glass-panel flex items-center justify-center hover:bg-primary hover:text-black transition-all"
+                                href="https://www.linkedin.com/in/veer-rathod-9a8991313/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+                                <img alt="LinkedIn" class="w-5 h-5"
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBgoaWFV4UhJbfj73m98oWwnj6bRdxWOtq8w&s" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <form id="contact-form" class="flex flex-col gap-4" onsubmit="handleContactSubmit(event)" action="https://formspree.io/f/mlgejopl" method="POST" aria-label="Contact Form">
+                            <div class="flex flex-col gap-1 input-group">
+                                <label for="name" class="text-xs text-[var(--text-secondary)] font-bold uppercase tracking-wider ml-1 font-mono pixelated-text">Name</label>
+                                <input
+                                    id="name" class="contact-input w-full bg-black/40 border-b border-white/10 focus:border-primary text-white px-4 py-3 outline-none transition-colors rounded-t-lg focus:bg-primary/5"
+                                    placeholder="John Doe" type="text" name="name" required />
+                            </div>
+                            <div class="flex flex-col gap-1 input-group">
+                                <label for="email" class="text-xs text-[var(--text-secondary)] font-bold uppercase tracking-wider ml-1 font-mono pixelated-text">Email</label>
+                                <input
+                                    id="email" class="contact-input w-full bg-black/40 border-b border-white/10 focus:border-primary text-white px-4 py-3 outline-none transition-colors rounded-t-lg focus:bg-primary/5"
+                                    placeholder="john@example.com" type="email" name="email" required />
+                            </div>
+                            <div class="flex flex-col gap-1 input-group">
+                                <label for="message" class="text-xs text-[var(--text-secondary)] font-bold uppercase tracking-wider ml-1 font-mono pixelated-text">Message</label>
+                                <textarea
+                                    id="message" class="contact-input w-full bg-black/40 border-b border-white/10 focus:border-primary text-white px-4 py-3 outline-none transition-colors rounded-t-lg resize-none focus:bg-primary/5"
+                                    placeholder="Tell me about your project..." rows="4" name="message" required></textarea>
+                            </div>
+                            <button id="contact-submit"
+                                class="mt-4 w-full bg-gradient-to-r from-primary to-teal-400 hover:to-white text-black font-bold py-4 rounded-xl transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(0,255,157,0.3)] hover:shadow-[0_0_30px_rgba(0,255,157,0.5)] glitch-button pixelated-text">
+                                <span class="btn-text">Send Message</span>
+                                <span class="material-symbols-outlined text-lg btn-icon">send</span>
+                            </button>
+                        </form>
+                        
+                        <!-- Success Card Overlay -->
+                        <div id="success-card" class="absolute inset-0 flex items-center justify-center bg-black/80 backdrop-blur-md rounded-xl z-20 hidden opacity-0 transition-all duration-500" role="alert" aria-live="polite">
+                            <div class="text-center p-6 border border-primary/30 rounded-xl bg-black/50 shadow-[0_0_30px_rgba(0,255,157,0.2)] transform scale-95">
+                                <div class="size-12 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4 text-primary">
+                                    <span class="material-symbols-outlined text-3xl">check_circle</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-[var(--text-primary)] mb-2 pixelated-text">Transmission Complete</h3>
+                                <p class="text-[var(--text-secondary)] text-sm">Thanks for reaching out! I'll get back to you within 24 hours.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Status Pill -->
+                <div class="mt-8 flex items-center justify-center gap-3 text-xs text-[var(--text-muted)] glass-panel px-4 py-2 rounded-full w-fit mx-auto border border-white/5">
+                    <div class="status-dot"></div>
+                    <span class="font-mono tracking-wide">Response time: &lt; 24 hours</span>
+                </div>
+            </div>
+        </section>
+        <!-- Footer -->
+        <footer class="w-full py-8 text-center text-[var(--text-muted)] text-sm border-t border-white/5">
+            <p>© 2025 Veer Rathod<span class="text-red-500">&#128150;</p>
+        </footer>
+    </main>
+    <script>
+        /**
+         * Scroll Reveal Animation using IntersectionObserver
+         */
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        /**
+         * Typing Effect for Hero Description
+         */
+        const typingElement = document.getElementById('hero-description');
+        if (typingElement) {
+            const text = typingElement.textContent.replace(/\s+/g, ' ').trim();
+            // Set min-height to prevent layout shift
+            typingElement.style.minHeight = typingElement.offsetHeight + 'px';
+            
+            typingElement.textContent = '';
+            typingElement.classList.add('cursor-blink');
+
+            let i = 0;
+            function typeWriter() {
+                if (i < text.length) {
+                    typingElement.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 20);
+                }
+            }
+            setTimeout(typeWriter, 1000);
+        }
+
+        /**
+         * Story Mode Intro Logic
+         */
+        const introOverlay = document.getElementById('story-intro-overlay');
+        const consoleContainer = document.getElementById('console-lines');
+        const skipBtn = document.getElementById('story-skip');
+        const progressBar = document.getElementById('intro-progress');
+        const timerDisplay = document.getElementById('intro-timer');
+        
+        const introLines = [
+            { text: "booting veer_rathod.dev...", delay: 200 },
+            { text: "loading profile: student - builder - SIH winner", delay: 800 },
+            { text: "spinning up projects: InternYojna, Portfolio v2, AI tools", delay: 1500 },
+            { text: "establishing secure connection...", delay: 2200 },
+            { text: "status: <span class='text-green-400 font-bold'>ONLINE</span>", delay: 2800 },
+            { text: "entering main interface...", delay: 3400 }
+        ];
+
+        /**
+         * Timer update for intro
+         */
+        let startTime = Date.now();
+        let timerInterval;
+        
+        function updateTimer() {
+            const elapsed = Date.now() - startTime;
+            const ms = Math.floor((elapsed % 1000) / 10);
+            const s = Math.floor((elapsed / 1000) % 60);
+            const m = Math.floor((elapsed / (1000 * 60)) % 60);
+            if(timerDisplay) {
+                timerDisplay.innerText = `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}:${ms.toString().padStart(2,'0')}`;
+            }
+        }
+
+        /**
+         * Play intro sound effect using Web Audio API
+         */
+        function playIntroSound() {
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContext) return;
+                const ctx = new AudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(440, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.1);
+                gain.gain.setValueAtTime(0.05, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.1);
+            } catch (e) {}
+        }
+
+        /**
+         * Finish intro sequence and hide overlay
+         */
+        function finishIntro() {
+            clearInterval(timerInterval);
+            if (!introOverlay.classList.contains('intro-hidden')) {
+                playIntroSound();
+                // Fill progress bar instantly
+                if(progressBar) progressBar.style.width = '100%';
+                
+                introOverlay.classList.add('intro-hidden');
+                
+                // Remove from DOM after transition to clean up
+                setTimeout(() => {
+                    introOverlay.style.display = 'none';
+                }, 500);
+            }
+        }
+
+        // Check for reduced motion
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (prefersReducedMotion) {
+            introOverlay.style.display = 'none';
+        } else {
+            timerInterval = setInterval(updateTimer, 30);
+            
+            // Play intro sequence
+            let totalDuration = introLines[introLines.length - 1].delay + 800;
+            
+            introLines.forEach((line, index) => {
+                setTimeout(() => {
+                    const div = document.createElement('div');
+                    div.className = 'console-line';
+                    div.innerHTML = `<span class="text-primary mr-2">&gt;</span> ${line.text}`;
+                    
+                    // Manage blinking cursor
+                    const prevCursor = consoleContainer.querySelector('.cursor-blink');
+                    if(prevCursor) prevCursor.classList.remove('cursor-blink');
+                    
+                    div.classList.add('cursor-blink');
+                    consoleContainer.appendChild(div);
+                    
+                    // Update progress bar based on steps
+                    const progress = ((index + 1) / introLines.length) * 100;
+                    if(progressBar) progressBar.style.width = `${progress}%`;
+                    
+                }, line.delay);
+            });
+
+            // Auto finish after sequence
+            setTimeout(finishIntro, totalDuration);
+        }
+
+        // Skip handlers
+        skipBtn.addEventListener('click', finishIntro);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' || e.key === 'Enter') finishIntro();
+        });
+
+        /**
+         * Contact Form Submission and Animation Logic
+         */
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('contact-submit');
+            const btnText = btn.querySelector('.btn-text');
+            const btnIcon = btn.querySelector('.btn-icon');
+            const form = document.getElementById('contact-form');
+            const successCard = document.getElementById('success-card');
+            
+            // Check reduced motion
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                form.reset();
+                alert("Message sent successfully!");
+                return;
+            }
+
+            // Form Submission (Mock or Real)
+            // Uncomment below to use real fetch if backend is ready
+            
+            const formData = new FormData(form);
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    finishTransmission();
+                } else {
+                    alert('Oops! There was a problem submitting your form');
+                }
+            }).catch(error => {
+                alert('Oops! There was a problem submitting your form');
+            });
+            
+
+            // Animation Sequence
+            // 1. Button Press
+            btn.style.transform = 'scale(0.96)';
+            setTimeout(() => btn.style.transform = 'scale(1)', 150);
+
+            // 2. Transmission
+            btn.classList.add('btn-transmitting');
+            btnIcon.style.display = 'none';
+            
+            const states = [
+                "> uploading message...",
+                "> encrypting payload...",
+                "> transmitting to server..."
+            ];
+            
+            let step = 0;
+            
+            // Simulate steps
+            const interval = setInterval(() => {
+                if(step < states.length) {
+                    btnText.innerText = states[step];
+                    step++;
+                } else {
+                    clearInterval(interval);
+                    finishTransmission();
+                }
+            }, 600);
+
+            function finishTransmission() {
+                // 3. Success State
+                btn.classList.remove('btn-transmitting');
+                btn.classList.add('btn-success');
+                btnText.innerText = "> transmission complete";
+                btnIcon.innerText = "check";
+                btnIcon.style.display = 'inline-block';
+                
+                // 4. Show Card
+                setTimeout(() => {
+                    successCard.classList.remove('hidden');
+                    // Trigger reflow for transition
+                    void successCard.offsetWidth;
+                    successCard.classList.remove('opacity-0');
+                    successCard.classList.add('opacity-100');
+                    
+                    // Reset form
+                    form.reset();
+                    
+                    // Reset button after delay
+                    setTimeout(() => {
+                        btn.classList.remove('btn-success');
+                        btnText.innerText = "Send Message";
+                        btnIcon.innerText = "send";
+                        
+                        // Hide card after a while
+                        setTimeout(() => {
+                            successCard.classList.remove('opacity-100');
+                            successCard.classList.add('opacity-0');
+                            setTimeout(() => successCard.classList.add('hidden'), 500);
+                        }, 4000);
+                    }, 2000);
+                }, 1000);
+            }
+        }
+
+        /**
+         * Interactive Orbs in Contact Section
+         */
+        const contactSection = document.querySelector('.contact-container .glass-panel');
+        const orbs = document.querySelectorAll('.contact-orb');
+
+        if (contactSection && orbs.length > 0) {
+            contactSection.addEventListener('mousemove', (e) => {
+                const rect = contactSection.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                orbs.forEach((orb, index) => {
+                    const factor = (index + 1) * 15; // Adjust movement intensity
+                    const moveX = ((x - centerX) / centerX) * factor;
+                    const moveY = ((y - centerY) / centerY) * factor;
+                    
+                    orb.style.setProperty('--orb-x', `${moveX}px`);
+                    orb.style.setProperty('--orb-y', `${moveY}px`);
+                });
+            });
+            
+            contactSection.addEventListener('mouseleave', () => {
+                orbs.forEach(orb => {
+                    orb.style.setProperty('--orb-x', '0px');
+                    orb.style.setProperty('--orb-y', '0px');
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>
